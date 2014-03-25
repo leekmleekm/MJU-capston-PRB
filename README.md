@@ -1,6 +1,6 @@
 Myoungji university capston project1
 ===========
 
-Pictuer Remember Book (PRB project)
+Picture Remember Book (PRB project)
 
 android 4.0.3 ICS(ice cream sandwich) based on 1280x720 xhdpi resolution
