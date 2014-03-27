@@ -6,6 +6,8 @@ Picture Remember Book (PRB project)
 android 4.0.3 ICS(ice cream sandwich) based on 1280x720 xhdpi resolution
 
 
+[Go to Trello!](https://trello.com/b/PokdRuze/prb-capstone)
+
 
 ## References
 
