@@ -7,6 +7,7 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="15" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -27,6 +28,8 @@
         <activity android:name="imageshow"></activity>
         <activity android:name="list"></activity>
         <activity android:name="server"></activity>
+        <activity android:name=".ImageShow.GridViewActivity"></activity>
+        <activity android:name=".ImageShow.FullScreenViewActivity"></activity>
     </application>
 
 </manifest>

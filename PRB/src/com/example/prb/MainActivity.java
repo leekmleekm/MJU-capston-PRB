@@ -1,5 +1,7 @@
 package com.example.prb;
 
+import com.example.prb.ImageShow.GridViewActivity;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -41,7 +43,7 @@ public class MainActivity extends Activity implements OnClickListener {
     		startActivity(inten1);
     		break;
     	case R.id.button2:
-    		Intent inten2 = new Intent(this, imageshow.class);
+    		Intent inten2 = new Intent(this, GridViewActivity.class);
     		startActivity(inten2);
     		break;
     	case R.id.button3:
