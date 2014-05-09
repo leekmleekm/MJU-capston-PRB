@@ -9,7 +9,7 @@ import android.util.Log;
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 	 // 데이터베이스 생성
 	 public MySQLiteOpenHelper(Context context, String name, CursorFactory factory, int version) {
-	  super(context, name, factory, version);
+		 super(context, name, factory, version);
 	 }
 	 // 테이블 생성
 	 public void onCreate(SQLiteDatabase db) {

@@ -17,19 +17,20 @@ public final class R {
         public static final int image_grid_view=0x7f050001;
         public static final int image_imgDisplay=0x7f050000;
         public static final int image_pager=0x7f050002;
-        public static final int main_author=0x7f050008;
+        public static final int main_author=0x7f050009;
+        public static final int main_button_camera=0x7f050006;
         public static final int main_button_search=0x7f050005;
-        public static final int main_image=0x7f050006;
+        public static final int main_image=0x7f050007;
         public static final int main_list=0x7f050004;
-        public static final int main_publisher=0x7f050009;
-        public static final int main_title=0x7f050007;
-        public static final int search_author=0x7f05000d;
-        public static final int search_button=0x7f050010;
-        public static final int search_edit_text=0x7f05000f;
-        public static final int search_image=0x7f05000b;
-        public static final int search_listview=0x7f05000a;
-        public static final int search_publisher=0x7f05000e;
-        public static final int search_title=0x7f05000c;
+        public static final int main_publisher=0x7f05000a;
+        public static final int main_title=0x7f050008;
+        public static final int search_author=0x7f05000e;
+        public static final int search_button=0x7f050011;
+        public static final int search_edit_text=0x7f050010;
+        public static final int search_image=0x7f05000c;
+        public static final int search_listview=0x7f05000b;
+        public static final int search_publisher=0x7f05000f;
+        public static final int search_title=0x7f05000d;
         public static final int textView1=0x7f050003;
     }
     public static final class layout {

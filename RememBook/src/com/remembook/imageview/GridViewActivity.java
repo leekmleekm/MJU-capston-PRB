@@ -8,10 +8,12 @@ import com.remembook.imageview.GridViewImageAdapter;
 import com.remembook.imageview.Utils;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.widget.GridView;
+import android.widget.Toast;
  
 public class GridViewActivity extends Activity {
  
@@ -24,13 +26,18 @@ public class GridViewActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //mainActivity에서 title명 받아옴
+        Intent intent = getIntent();
+        String path = intent.getExtras().get("path").toString();
+        
         setContentView(R.layout.imageview_grid);
         gridView = (GridView) findViewById(R.id.image_grid_view);
         utils = new Utils(this);
         InitilizeGridLayout();
-        imagePaths = utils.getFilePaths();
-        adapter = new GridViewImageAdapter(GridViewActivity.this, imagePaths, columnWidth);
+        imagePaths = utils.getFilePaths(path);
+        adapter = new GridViewImageAdapter(GridViewActivity.this, imagePaths, columnWidth, path);
         gridView.setAdapter(adapter);
+
     }
  
     private void InitilizeGridLayout() {

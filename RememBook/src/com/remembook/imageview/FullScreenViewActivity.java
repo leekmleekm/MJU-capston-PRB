@@ -25,7 +25,9 @@ public class FullScreenViewActivity extends Activity{
 		
 		Intent i = getIntent();
 		int position = i.getIntExtra("position", 0);
-		adapter = new FullScreenImageAdapter(FullScreenViewActivity.this, utils.getFilePaths());
+        String path = i.getExtras().get("path").toString(); //gridviewimageadapter에서 title명 받아옴
+		
+		adapter = new FullScreenImageAdapter(FullScreenViewActivity.this, utils.getFilePaths(path));
 		viewPager.setAdapter(adapter);
 		viewPager.setCurrentItem(position);
 	}

@@ -17,7 +17,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
     private Activity _activity;
     private ArrayList<String> _imagePaths;
     private LayoutInflater inflater;
-    // ����ü
+   
     public FullScreenImageAdapter(Activity activity, ArrayList<String> imagePaths) {
         this._activity = activity;
         this._imagePaths = imagePaths;

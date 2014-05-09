@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
  
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Point;
@@ -13,15 +14,16 @@ import android.widget.Toast;
  
 public class Utils { 
     private Context _context;
-    // ����ü
+    
     public Utils(Context context) {
         this._context = context;
     }
-    // sdī��� ���� �о� �帮�� ���
-    public ArrayList<String> getFilePaths() {
+    // sd카드로 부터 읽어 드리는 경로
+    public ArrayList<String> getFilePaths(String path) {
         ArrayList<String> filePaths = new ArrayList<String>();
-        File directory = new File(android.os.Environment.getExternalStorageDirectory() + File.separator + AppConstant.PHOTO_ALBUM);
-        // ���丮 üũ
+        File directory = new File(android.os.Environment.getExternalStorageDirectory() + File.separator
+        		+ "DCIM/RememBook/" + path/*AppConstant.PHOTO_ALBUM*/);
+        // 디렉토리 체크
         if (directory.isDirectory()) {
             File[] listFiles = directory.listFiles();
  
@@ -35,12 +37,12 @@ public class Utils {
                 }
             }        
             else
-                Toast.makeText(_context, AppConstant.PHOTO_ALBUM + " ����ȿ� �̹��� ������ �ϳ��� ����ϴ�.", Toast.LENGTH_LONG).show();
-        } 
+                Toast.makeText(_context, path/*AppConstant.PHOTO_ALBUM*/ + " 폴더에 사진이 없습니다.", Toast.LENGTH_LONG).show();
+        }  
         else {
             AlertDialog.Builder alert = new AlertDialog.Builder(_context);
-            alert.setTitle("����");
-            alert.setMessage( "������ ���丮�� " + AppConstant.PHOTO_ALBUM + " �Դϴ�. ���� SDī�忡 ���丮�� �������� �ʽ��ϴ�.");
+            alert.setTitle("에러");
+            alert.setMessage( "지정된 폴더는 " + path/*AppConstant.PHOTO_ALBUM*/ + " 입니다. 현재 SD카드에 디렉토리가 존재하지 않습니다.");
             alert.setPositiveButton("OK", null);
             alert.show();
         }
@@ -48,7 +50,6 @@ public class Utils {
         return filePaths;
     }
  
-    // �����ϴ� ���� Ȯ���� Ȯ��
     private boolean IsSupportedFile(String filePath) {
         String ext = filePath.substring((filePath.lastIndexOf(".") + 1), filePath.length());
  
@@ -58,7 +59,6 @@ public class Utils {
             return false;
     }
  
-    // ��⸶�� ���� �ٸ��� ������ ��� �� ��� (�� ����� ���� ������ ��⸶�� ���ٿ� ��µǴ� ��� ���� �޶���)
     public int getScreenWidth() {
         int columnWidth;
         WindowManager wm = (WindowManager) _context.getSystemService(Context.WINDOW_SERVICE);

@@ -1,5 +1,6 @@
 package com.remembook.search;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import com.remembook.R;
@@ -12,12 +13,12 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -40,6 +41,7 @@ public class NaverBook extends Activity implements OnItemClickListener {
 	
 	final int count = 11;
 	int start = 1;
+
 	
 	private final Handler handler = new Handler(){
     	public void handleMessage(final Message msg){
@@ -111,9 +113,24 @@ public class NaverBook extends Activity implements OnItemClickListener {
     public void onItemClick(AdapterView<?> parent, View v, int position, long id){
     	MySQLiteHandler handler = MySQLiteHandler.open(getApplicationContext());
     	BookData item = data.get(position);
+    	//테이블 추가
     	handler.insert(item.image, item.title, item.author, item.publisher);
     	handler.close();
-    	alert("등록", item.title);
+    	//폴더 생성
+    	File folder = new File(Environment.getExternalStorageDirectory() + "/DCIM/RememBook/" + item.title);
+    	
+    	boolean success = true;
+    	if (!folder.exists()) {
+    	    success = folder.mkdir();
+    	}
+    	if (success) {
+    	    // Do something on success
+    		alert("등록", item.title);
+    		
+    	} else {
+    	    // Do something else on failure
+    		Toast.makeText(this, "등록 실패", Toast.LENGTH_SHORT).show();
+    	}
     }
     
     private void alert(String title, String message){

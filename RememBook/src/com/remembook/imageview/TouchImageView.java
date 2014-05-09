@@ -13,12 +13,12 @@ import android.widget.ImageView;
  
 public class TouchImageView extends ImageView {
     Matrix matrix;
-    // 3���� ���� �ƹ��͵� ���� ��, �巡���� ��, ���� ��
+
     static final int NONE = 0;
     static final int DRAG = 1;
     static final int ZOOM = 2;
     int mode = NONE;
-    // ���� �� ����ؾ� �ϴ°͵�
+
     PointF last = new PointF();
     PointF start = new PointF();
     float minScale = 1f;
@@ -178,14 +178,13 @@ public class TouchImageView extends ImageView {
         viewWidth = MeasureSpec.getSize(widthMeasureSpec);
         viewHeight = MeasureSpec.getSize(heightMeasureSpec);
  
-        // ���� ȸ��� ��� �̹��� ũ�� �ٽ� ����
         if (oldMeasuredHeight == viewWidth && oldMeasuredHeight == viewHeight || viewWidth == 0 || viewHeight == 0)
             return;
         oldMeasuredHeight = viewHeight;
         oldMeasuredWidth = viewWidth;
  
         if (saveScale == 1) {
-            // ȭ�� ũ�⿡ ����
+
             float scale;
  
             Drawable drawable = getDrawable();
@@ -200,8 +199,7 @@ public class TouchImageView extends ImageView {
             float scaleY = (float) viewHeight / (float) bmHeight;
             scale = Math.min(scaleX, scaleY);
             matrix.setScale(scale, scale);
- 
-            // ���� �̹���
+
             float redundantYSpace = (float) viewHeight - (scale * (float) bmHeight);
             float redundantXSpace = (float) viewWidth - (scale * (float) bmWidth);
             redundantYSpace /= (float) 2;

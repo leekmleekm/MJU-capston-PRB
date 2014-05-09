@@ -7,6 +7,7 @@ import java.util.ArrayList;
  
 
 
+
 import com.remembook.imageview.FullScreenViewActivity;
 
 import android.app.Activity;
@@ -19,17 +20,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
  
 public class GridViewImageAdapter extends BaseAdapter {
  
     private Activity _activity;
     private ArrayList<String> _filePaths = new ArrayList<String>();
     private int imageWidth;
+    private String titlePath;
  
-    public GridViewImageAdapter(Activity activity, ArrayList<String> filePaths, int imageWidth) {
+    public GridViewImageAdapter(Activity activity, ArrayList<String> filePaths, int imageWidth, String path) {
         this._activity = activity;
         this._filePaths = filePaths;
         this.imageWidth = imageWidth;
+        this.titlePath = path;
     }
     
     @Override
@@ -70,7 +74,7 @@ public class GridViewImageAdapter extends BaseAdapter {
  
     class OnImageClickListener implements OnClickListener {
         int _postion;
-        // ����ü
+
         public OnImageClickListener(int position) {
             this._postion = position;
         }
@@ -78,11 +82,11 @@ public class GridViewImageAdapter extends BaseAdapter {
         public void onClick(View v) {
             Intent i = new Intent(_activity, FullScreenViewActivity.class);
             i.putExtra("position", _postion);
+            i.putExtra("path", titlePath);
             _activity.startActivity(i);
         }
     }
  
-    // �̹��� ũ�� ����
     public static Bitmap decodeFile(String filePath, int WIDTH, int HIGHT) {
     	try {
             File f = new File(filePath);
@@ -106,5 +110,4 @@ public class GridViewImageAdapter extends BaseAdapter {
         }
         return null;
     }
- 
 }
