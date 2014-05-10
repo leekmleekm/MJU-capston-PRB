@@ -22,12 +22,12 @@ public class search extends Activity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.search_main);
 	    // TODO Auto-generated method stub
-	    et=(EditText)findViewById(R.id.search_edit_text);
-	    bt=(Button)findViewById(R.id.search_button);
+	    et = (EditText)findViewById(R.id.search_edit_text);
+	    bt = (Button)findViewById(R.id.search_button);
 	    
 	    bt.setOnClickListener(new OnClickListener(){
 	    	
-			public void onClick(View arg0) {
+	    	public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				info=et.getText().toString();
 				

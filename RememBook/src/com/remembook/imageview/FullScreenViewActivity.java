@@ -18,15 +18,15 @@ public class FullScreenViewActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		setContentView(R.layout.imageview_view);
-		viewPager = (ViewPager) findViewById(R.id.image_pager);
-		utils = new Utils(getApplicationContext());
 		
 		Intent i = getIntent();
 		int position = i.getIntExtra("position", 0);
         String path = i.getExtras().get("path").toString(); //gridviewimageadapter에서 title명 받아옴
-		
+        
+		viewPager = (ViewPager) findViewById(R.id.image_pager);
+		utils = new Utils(getApplicationContext());
+	
 		adapter = new FullScreenImageAdapter(FullScreenViewActivity.this, utils.getFilePaths(path));
 		viewPager.setAdapter(adapter);
 		viewPager.setCurrentItem(position);

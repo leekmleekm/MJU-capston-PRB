@@ -11,5 +11,5 @@ public class AppConstant {
     //저장될 장소
     public static final String PHOTO_ALBUM = "RememBook";
     //지원하는 확장자
-    public static final List<String> FILE_EXTN = Arrays.asList("jpg", "jpeg", "png", "gif");
+    public static final List<String> FILE_EXTN = Arrays.asList("jpg", "jpeg", "png");
 }

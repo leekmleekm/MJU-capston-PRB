@@ -41,7 +41,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
         imgDisplay = (TouchImageView) viewLayout.findViewById(com.remembook.R.id.image_imgDisplay);
          
         BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
         Bitmap bitmap = BitmapFactory.decodeFile(_imagePaths.get(position), options);
         imgDisplay.setImageBitmap(bitmap);
 

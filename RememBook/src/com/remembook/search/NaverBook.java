@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import com.remembook.R;
+import com.remembook.R.layout;
 import com.remembook.database.MySQLiteHandler;
 import com.remembook.main.*;
 
@@ -19,12 +20,15 @@ import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class NaverBook extends Activity implements OnItemClickListener {
+public class NaverBook extends Activity implements OnItemClickListener, OnClickListener {
     /** Called when the activity is first created. */
 	
 	final int MENU_back = Menu.FIRST;    
@@ -56,6 +60,11 @@ public class NaverBook extends Activity implements OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_booklist);
         
+        Button button_search_pre = (Button)findViewById(R.id.search_button_pre);
+        Button button_search_for = (Button)findViewById(R.id.search_button_for);
+        button_search_pre.setOnClickListener(this);
+        button_search_for.setOnClickListener(this);
+        
         Intent intent = getIntent();
 	    Bundle myBundle = intent.getExtras();
 		info = myBundle.getString("key");
@@ -69,19 +78,38 @@ public class NaverBook extends Activity implements OnItemClickListener {
 		
     }
     
+    public void onClick(View v){
+    	switch (v.getId()){
+    		case R.id.search_button_pre:
+    			if(start <= 11){
+					Toast.makeText(this, "첫 번째 페이지입니다.", Toast.LENGTH_SHORT).show();
+				}
+				else{
+					start -= 11;
+					getNewList(info, count, start);
+				}
+    			break;
+    			
+    		case R.id.search_button_for:
+    			start += 11;
+				getNewList(info, count, start);
+    			break;
+    	}
+    }
+    
     @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
-		super.onCreateOptionsMenu(menu);
+		/*super.onCreateOptionsMenu(menu);
 		menu.add(0, MENU_back, 0, "이전 페이지");
-		menu.add(0, MENU_forward, 1, "다음 페이지");
+		menu.add(0, MENU_forward, 1, "다음 페이지");*/
 		return true;
 	}
 	
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		// TODO Auto-generated method stub
-		switch(item.getItemId()){
+		/*switch(item.getItemId()){
 			case MENU_back :
 				if(start <= 11){
 					Toast.makeText(this, "첫 번째 페이지입니다.", Toast.LENGTH_SHORT).show();
@@ -96,7 +124,7 @@ public class NaverBook extends Activity implements OnItemClickListener {
 				start += 11;
 				getNewList(info, count, start);
 				break;
-		}
+		}*/
 		return super.onMenuItemSelected(featureId, item);
 	}
 	

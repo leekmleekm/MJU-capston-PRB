@@ -3,6 +3,7 @@ package com.remembook.imageview;
 import java.util.ArrayList;
 
 import com.remembook.R;
+import com.remembook.camera.camera;
 import com.remembook.imageview.AppConstant;
 import com.remembook.imageview.GridViewImageAdapter;
 import com.remembook.imageview.Utils;
@@ -12,10 +13,12 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.GridView;
-import android.widget.Toast;
  
-public class GridViewActivity extends Activity {
+public class GridViewActivity extends Activity implements OnClickListener {
  
     private Utils utils;
     private ArrayList<String> imagePaths = new ArrayList<String>();
@@ -26,11 +29,15 @@ public class GridViewActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.imageview_grid);
+
+        Button button_camera = (Button)findViewById(R.id.image_button_camera);
+        button_camera.setOnClickListener(this);
+        
         //mainActivity에서 title명 받아옴
         Intent intent = getIntent();
         String path = intent.getExtras().get("path").toString();
         
-        setContentView(R.layout.imageview_grid);
         gridView = (GridView) findViewById(R.id.image_grid_view);
         utils = new Utils(this);
         InitilizeGridLayout();
@@ -39,10 +46,11 @@ public class GridViewActivity extends Activity {
         gridView.setAdapter(adapter);
 
     }
- 
+
     private void InitilizeGridLayout() {
         Resources r = getResources();
         float padding = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, AppConstant.GRID_PADDING, r.getDisplayMetrics());
+        
         columnWidth = (int) ((utils.getScreenWidth() - ((AppConstant.NUM_OF_COLUMNS + 1) * padding)) / AppConstant.NUM_OF_COLUMNS);
  
         gridView.setNumColumns(AppConstant.NUM_OF_COLUMNS);
@@ -52,4 +60,20 @@ public class GridViewActivity extends Activity {
         gridView.setHorizontalSpacing((int) padding);
         gridView.setVerticalSpacing((int) padding);
     }
+    
+    public void onClick(View v){
+    	switch (v.getId()){
+    		case R.id.image_button_camera:
+    			
+    			//mainActivity에서 title명 받아옴
+    	    	Intent intent = getIntent();
+    	        String path = intent.getExtras().get("path").toString();
+    	        
+    			Intent intent_camera = new Intent(this, camera.class);
+    			intent_camera.putExtra("path", path); //title명 camera에게 보냄
+    			startActivity(intent_camera);
+    			break;
+    	}
+    }
+
 }

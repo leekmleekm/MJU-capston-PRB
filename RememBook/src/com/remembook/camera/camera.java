@@ -113,7 +113,11 @@ public class camera extends Activity {
    /*
     * returning image / video
     */
-	private static File getOutputMediaFile(int type) {
+	public File getOutputMediaFile(int type) {
+		
+		//GridViewActivity에서 title명 받아옴
+		Intent intent = getIntent();
+        String title_path = intent.getExtras().get("path").toString();
 
 		// External SD card location
 		File mediaStorageDir = new File( Environment
@@ -132,7 +136,8 @@ public class camera extends Activity {
 		File mediaFile;
       
 		if (type == MEDIA_TYPE_IMAGE) {
-			mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".png");
+			mediaFile = new File(mediaStorageDir.getPath() + File.separator + title_path
+					+ File.separator + "IMG_" + timeStamp + ".png");
 		}
 		else {
 			return null;

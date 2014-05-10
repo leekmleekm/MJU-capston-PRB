@@ -40,7 +40,6 @@ public class mainActivity extends Activity implements OnClickListener, OnItemCli
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		Button button_search = (Button)findViewById(R.id.main_button_search);
-		Button button_camera = (Button)findViewById(R.id.main_button_camera);
 		MySQLiteHandler handler = MySQLiteHandler.open(getApplicationContext());
 
 		list = (ListView)findViewById(R.id.main_list);
@@ -49,7 +48,6 @@ public class mainActivity extends Activity implements OnClickListener, OnItemCli
 		list.setOnItemClickListener(this);
 		list.setOnItemLongClickListener(this);;
 		button_search.setOnClickListener(this);
-		button_camera.setOnClickListener(this);
 		
 		if(cursor.getCount() > 0 ){
 			dbCursor dbAdapter = new dbCursor(this, cursor);
@@ -65,10 +63,6 @@ public class mainActivity extends Activity implements OnClickListener, OnItemCli
     		case R.id.main_button_search:
     			Intent intent_search = new Intent(this, search.class);
     			startActivity(intent_search);
-    			break;
-    		case R.id.main_button_camera:
-    			Intent intent_camera = new Intent(this, camera.class);
-    			startActivity(intent_camera);
     			break;
     	}
     }

@@ -25,12 +25,4 @@
         android:layout_alignParentTop="true"
         android:text="책 검색" />
 
-    <Button
-        android:id="@+id/main_button_camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/main_button_search"
-        android:text="사진 촬영" />
-
 </RelativeLayout>
