@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.remembook"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+
+    <application
+        android:icon="@drawable/icon_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@android:style/Theme.Light.NoTitleBar" >
+        <activity android:name="com.remembook.search.search" >
+        </activity>
+        <activity android:name="com.remembook.search.SearchMain" >
+        </activity>
+        <activity
+            android:name=".main.MainActivity"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        <activity android:name=".imageview.GridViewActivity" >
+        </activity>
+        <activity android:name=".imageview.FullScreenViewActivity" >
+        </activity>
+        <activity android:name=".camera.camera" >
+        </activity>
+        <activity
+            android:name=".main.LoadingSplash"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
