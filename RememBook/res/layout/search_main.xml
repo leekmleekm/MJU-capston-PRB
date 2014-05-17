@@ -1,23 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    
-	<TextView  
-		android:layout_width="fill_parent" 
-		android:layout_height="wrap_content" 
-		android:text="책 이름을 입력하세요"
-		android:textSize="18sp"/>
-	
-    <EditText
-        android:id="@+id/search_edit_text"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-    
-   	<Button
-   	    android:id="@+id/search_button"
-   	    android:layout_width="wrap_content"
-   	    android:layout_height="wrap_content"
-   	    android:text="검색"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/search_edit_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:hint="@string/search_edittext"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/search_edit_text"
+            android:layout_alignBottom="@+id/search_edit_text"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/icon_search" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@android:id/tabcontent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="2dip" >
+
+        <ListView
+            android:id="@+id/search_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF" >
+        </ListView>
+    </FrameLayout>
+
 </LinearLayout>

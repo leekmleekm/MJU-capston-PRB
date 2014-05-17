@@ -6,8 +6,8 @@ import java.util.Date;
 import java.util.Locale;
 
 import com.remembook.R;
-import com.remembook.main.mainActivity;
-import com.remembook.search.NaverBook;
+import com.remembook.main.MainActivity;
+import com.remembook.search.SearchMain;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -39,7 +39,7 @@ public class camera extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		Intent intent = new Intent(camera.this, mainActivity.class);
+		Intent intent = new Intent(camera.this, MainActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);
 		captureImage();

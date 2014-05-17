@@ -19,9 +19,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class dbCursor extends CursorAdapter {
+public class DBcursor extends CursorAdapter {
 	
-	public dbCursor(Context context, Cursor c) {
+	public DBcursor(Context context, Cursor c) {
 		super(context, c);
 	}
 

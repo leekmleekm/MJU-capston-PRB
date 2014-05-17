@@ -37,7 +37,7 @@ public class Utils {
                 }
             }        
             else
-                Toast.makeText(_context, path/*AppConstant.PHOTO_ALBUM*/ + " 폴더에\n사진이 없습니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(_context, path/*AppConstant.PHOTO_ALBUM*/ + " 폴더에 사진이 없습니다.", Toast.LENGTH_LONG).show();
         }  
         else {
             AlertDialog.Builder alert = new AlertDialog.Builder(_context);
