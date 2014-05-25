@@ -14,14 +14,17 @@ public final class R {
         public static final int background_splash=0x7f020000;
         public static final int button_booksearch=0x7f020001;
         public static final int button_booksearch_pressed=0x7f020002;
-        public static final int icon_launcher=0x7f020003;
-        public static final int icon_search=0x7f020004;
-        public static final int main_title=0x7f020005;
-        public static final int selecter_button_booksearch=0x7f020006;
+        public static final int button_camera=0x7f020003;
+        public static final int button_camera_pressed=0x7f020004;
+        public static final int icon_launcher=0x7f020005;
+        public static final int icon_search=0x7f020006;
+        public static final int main_title=0x7f020007;
+        public static final int selecter_button_booksearch=0x7f020008;
+        public static final int selecter_button_camera=0x7f020009;
     }
     public static final class id {
-        public static final int image_button_camera=0x7f050002;
-        public static final int image_grid_view=0x7f050001;
+        public static final int image_button_camera=0x7f050001;
+        public static final int image_grid_view=0x7f050002;
         public static final int image_imgDisplay=0x7f050000;
         public static final int image_pager=0x7f050003;
         public static final int main_author=0x7f050008;
@@ -50,9 +53,10 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040000;
-        public static final int base=0x7f040004;
+        public static final int base=0x7f040005;
         public static final int book_list=0x7f040001;
         public static final int book_list_image=0x7f040002;
+        public static final int imageview_list=0x7f040004;
         public static final int search_edittext=0x7f040003;
     }
 }
