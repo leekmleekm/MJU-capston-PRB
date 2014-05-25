@@ -22,6 +22,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -31,7 +33,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 public class SearchActivity extends Activity implements OnItemClickListener,
-		OnClickListener, OnEditorActionListener {
+		OnClickListener, OnEditorActionListener, OnScrollListener {
 
 	private String key1 = "6fd12764eaf503ad4b16ecd1c5561bad";
 	private ProgressDialog dialog;
@@ -43,11 +45,12 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 	ArrayList<SearchBookData> data;
 	private String info;
 
-	final int count = 11;
+	int count = 11;
 	int start = 1;
 
 	private EditText editext;
 	private Button button;
+	private boolean mLockListView;
 
 	Handler handler = new Handler(new IncomingHandelerCallback());
 
@@ -56,7 +59,8 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 		public boolean handleMessage(Message msg) {
 			dialog.dismiss();
 
-			adapter = new SearchAdapter(SearchActivity.this, R.layout.search_listitem, data);
+			adapter = new SearchAdapter(SearchActivity.this,
+					R.layout.search_listitem, data);
 			getList.setAdapter(adapter);
 
 			return true;
@@ -68,6 +72,9 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search_main);
 
+		mLockListView = false;
+		
+
 		selectList = (ListView) findViewById(R.id.search_listview);
 		editext = (EditText) findViewById(R.id.search_edit_text);
 		button = (Button) findViewById(R.id.search_button);
@@ -75,6 +82,7 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 		button.setOnClickListener(this);
 		selectList.setOnItemClickListener(this);
 		editext.setOnEditorActionListener(this);
+		selectList.setOnScrollListener(this);
 
 	}
 
@@ -140,18 +148,22 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 
 	private void alert(String title, String message, final int position) {
 		// 체인형으로 메소드를 사용한다.
-		new AlertDialog.Builder(this)/*.setTitle(title)*/.setMessage(message + " 등록하시겠습니까?")
+		new AlertDialog.Builder(this)
+				/* .setTitle(title) */.setMessage(message + " 등록하시겠습니까?")
 				.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-					
+
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						AppSqliteHandler handler = AppSqliteHandler.open(getApplicationContext());
+						AppSqliteHandler handler = AppSqliteHandler
+								.open(getApplicationContext());
 						SearchBookData item = data.get(position);
 						// 테이블 추가
-						handler.insert(item.image, item.title, item.author, item.publisher, item.isbn);
+						handler.insert(item.image, item.title, item.author,
+								item.publisher, item.isbn);
 						handler.close();
 						// 폴더 생성
-						File folder = new File(Environment .getExternalStorageDirectory()
+						File folder = new File(Environment
+								.getExternalStorageDirectory()
 								+ "/DCIM/RememBook/" + item.title);
 
 						boolean success = true;
@@ -162,12 +174,14 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 							// 폴더 생성이 성공했을 경우
 						} else {
 							// 폴더 생성이 실패했을 경우
-							// Toast.makeText(this, "책 등록 실패".LENGTH_SHORT).show();
+							// Toast.makeText(this,
+							// "책 등록 실패".LENGTH_SHORT).show();
 						}
 
 						dialog.dismiss(); // 클릭되면 다이얼로그를 종료한다.
 
-						Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+						Intent intent = new Intent(SearchActivity.this,
+								MainActivity.class);
 						intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						startActivity(intent);
 					}
@@ -180,5 +194,48 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 						dialog.dismiss(); // 클릭되면 다이얼로그를 종료한다.
 					}
 				}).show();
+	}
+
+	@Override
+	public void onScroll(AbsListView view, int firstVisibleItem,
+			int visibleItemCount, int totalItemCount) {
+
+		int count = totalItemCount - visibleItemCount;
+
+		if (firstVisibleItem >= count && totalItemCount != 0
+				&& mLockListView == false) {
+
+			addItem();
+
+		}
+
+	}
+
+	private void addItem() {
+		// TODO Auto-generated method stub
+		mLockListView = true;
+
+		Runnable run = new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				count += 11;
+
+				getNewList(editext.getText().toString(), count, start);
+
+				mLockListView = false;
+
+			}
+
+		};
+		Handler handler = new Handler();
+		handler.postDelayed(run, 500);
+
+	}
+
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState) {
+
 	}
 }

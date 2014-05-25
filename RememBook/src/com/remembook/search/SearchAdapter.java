@@ -25,8 +25,7 @@ public class SearchAdapter extends ArrayAdapter<Object> {
 	View view;
 	ImageView image;
 
-	public SearchAdapter(Context context, int textViewResourceId,
-			ArrayList items) {
+	public SearchAdapter(Context context, int textViewResourceId, ArrayList items) {
 		super(context, textViewResourceId, items);
 		this.data = items;
 	}

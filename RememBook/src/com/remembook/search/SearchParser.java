@@ -20,8 +20,7 @@ public class SearchParser {
 		this.key1 = key;
 	}
 
-	public ArrayList<SearchBookData> getBookData(final String info, final int count,
-			final int start) {
+	public ArrayList<SearchBookData> getBookData(String info, int count, int start ) {
 		data = new ArrayList<SearchBookData>();
 
 		SearchBookData item = null;
