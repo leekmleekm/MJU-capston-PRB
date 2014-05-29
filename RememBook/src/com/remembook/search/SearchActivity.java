@@ -51,6 +51,7 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 	private EditText editext;
 	private Button button;
 	private boolean mLockListView;
+	
 
 	Handler handler = new Handler(new IncomingHandelerCallback());
 
@@ -59,9 +60,11 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 		public boolean handleMessage(Message msg) {
 			dialog.dismiss();
 
-			adapter = new SearchAdapter(SearchActivity.this,
-					R.layout.search_listitem, data);
+			adapter = new SearchAdapter(SearchActivity.this, R.layout.search_listitem, data);
 			getList.setAdapter(adapter);
+			
+			if(count != 11) // 리스트가 갱신되면 스크롤 초점을 갱신전 아이템 마지막 -2번째에 위치시킴
+				getList.setSelection(count - 13);
 
 			return true;
 		}
@@ -88,17 +91,9 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 
 	public void onClick(View v) {
 		switch (v.getId()) {
-		/*
-		 * case R.id.search_button_pre: if(start <= 11){ Toast.makeText(this,
-		 * "첫 번째 페이지입니다.", Toast.LENGTH_SHORT).show(); } else{ start -= 11;
-		 * getNewList(info, count, start); } break;
-		 * 
-		 * case R.id.search_button_for: start += 11; getNewList(info, count,
-		 * start); break;
-		 */
-
+		
 		case R.id.search_button:
-
+			
 			makeNewList();
 			break;
 		}
@@ -119,8 +114,7 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 	}
 
 	// 사용자 값에 따른 결과를 가져옴
-	private void getNewList(final String inform, final int count,
-			final int starts) {
+	private void getNewList(final String inform, final int count, final int starts) {
 		dialog = ProgressDialog.show(this, "알림", "목록 불러오는 중..", true, false);
 		new Thread() {
 			public void run() {
@@ -174,8 +168,7 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 							// 폴더 생성이 성공했을 경우
 						} else {
 							// 폴더 생성이 실패했을 경우
-							// Toast.makeText(this,
-							// "책 등록 실패".LENGTH_SHORT).show();
+							// Toast.makeText(this, "책 등록 실패".LENGTH_SHORT).show();
 						}
 
 						dialog.dismiss(); // 클릭되면 다이얼로그를 종료한다.
@@ -202,13 +195,10 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 
 		int count = totalItemCount - visibleItemCount;
 
-		if (firstVisibleItem >= count && totalItemCount != 0
-				&& mLockListView == false) {
+		if (firstVisibleItem >= count && totalItemCount != 0 && mLockListView == false) {
 
 			addItem();
-
 		}
-
 	}
 
 	private void addItem() {
@@ -221,21 +211,17 @@ public class SearchActivity extends Activity implements OnItemClickListener,
 			public void run() {
 				// TODO Auto-generated method stub
 				count += 11;
-
 				getNewList(editext.getText().toString(), count, start);
-
 				mLockListView = false;
-
 			}
 
 		};
 		Handler handler = new Handler();
 		handler.postDelayed(run, 500);
-
 	}
 
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
-
+		// TODO Auto-generated method stub
 	}
 }

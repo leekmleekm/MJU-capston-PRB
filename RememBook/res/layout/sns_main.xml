@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="5dp"
+    >
+ <EditText
+  android:id="@+id/etContent"
+  android:layout_width="fill_parent"
+  android:layout_height="100dp"
+  android:padding="5dp"
+  android:textSize="16sp"
+  android:gravity="top"
+  android:typeface="monospace"
+  android:scrollbars="vertical"
+  android:background="#FFFFFF"/>
+
+ <LinearLayout
+     android:orientation="horizontal"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:padding="5dp"
+     android:gravity="center_vertical|center_horizontal"
+     >
+  <Button 
+    android:id="@+id/btnLogin"
+   android:layout_width="70dp"
+   android:layout_height="wrap_content"
+   android:text="Login"/>
+  <Button 
+    android:id="@+id/btnFeed"
+   android:layout_width="70dp"
+   android:layout_height="wrap_content"
+   android:text="Write"/>
+  <Button 
+    android:id="@+id/btnLogout"
+   android:layout_width="70dp"
+   android:layout_height="wrap_content"
+   android:text="Logout"/>
+ </LinearLayout>
+
+</LinearLayout>
+

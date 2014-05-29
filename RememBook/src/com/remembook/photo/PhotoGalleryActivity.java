@@ -7,6 +7,7 @@ import com.remembook.camera.CameraActivity;
 import com.remembook.photo.PhotoGalleryAdapter;
 import com.remembook.photo.PhotoGalleryReference;
 import com.remembook.photo.PhotoGalleryUtils;
+import com.remembook.sns.FacebookCon;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
 
 public class PhotoGalleryActivity extends Activity implements OnClickListener {
 
@@ -30,9 +32,12 @@ public class PhotoGalleryActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.imageview_grid);
+		TextView albumName = (TextView)findViewById(R.id.image_albumName);
 
 		Button button_camera = (Button) findViewById(R.id.image_button_camera);
+		Button button_sns = (Button) findViewById(R.id.image_button_sns);
 		button_camera.setOnClickListener(this);
+		button_sns.setOnClickListener(this);
 
 		Intent intent = getIntent();
 		String path = intent.getExtras().get("path").toString(); // mainActivity에서 title명 받아옴
@@ -41,9 +46,10 @@ public class PhotoGalleryActivity extends Activity implements OnClickListener {
 		utils = new PhotoGalleryUtils(this);
 		InitilizeGridLayout();
 		imagePaths = utils.getFilePaths(path);
-		adapter = new PhotoGalleryAdapter(PhotoGalleryActivity.this, imagePaths,
-				columnWidth, path);
+		adapter = new PhotoGalleryAdapter(PhotoGalleryActivity.this, imagePaths, columnWidth, path);
 		gridView.setAdapter(adapter);
+		
+		albumName.setText(intent.getExtras().get("path").toString());
 
 	}
 
@@ -73,6 +79,12 @@ public class PhotoGalleryActivity extends Activity implements OnClickListener {
 			Intent intent_camera = new Intent(this, CameraActivity.class);
 			intent_camera.putExtra("path", path); // title명 camera에게 보냄
 			startActivity(intent_camera);
+			break;
+		
+		case R.id.image_button_sns:
+			
+			Intent intent_facebook = new Intent(this, FacebookCon.class);
+			startActivity(intent_facebook);
 			break;
 		}
 	}

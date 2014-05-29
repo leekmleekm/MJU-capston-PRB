@@ -10,22 +10,34 @@
         android:background="@drawable/main_title" >
 
         <TextView
+            android:id="@+id/image_albumName"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_toLeftOf="@+id/image_button_camera"
+            android:layout_toRightOf="@+id/image_button_sns"
+            android:ellipsize="end"
             android:gravity="center"
-            android:text="@string/imageview_list"
+            android:singleLine="true"
             android:textColor="#fff"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/image_button_camera"
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
             android:background="@drawable/selecter_button_camera" />
+
+        <Button
+            android:id="@+id/image_button_sns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/selecter_button_sns" />
+
     </RelativeLayout>
 
     <GridView
