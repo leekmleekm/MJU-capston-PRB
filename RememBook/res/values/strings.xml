@@ -6,4 +6,6 @@
     <string name="search_edittext">책 이름을 입력하세요.</string>
     <string name="imageview_list">사진</string>
     <string name="base">base</string>
+    <string name="take_picture_btn">사진찍기</string>
+    <string name="camera_flash_button">플레시 버튼</string>
 </resources>

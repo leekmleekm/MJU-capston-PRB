@@ -32,14 +32,20 @@ public class PhotoGalleryActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.imageview_grid);
-		TextView albumName = (TextView)findViewById(R.id.image_albumName);
-
+		
 		Button button_camera = (Button) findViewById(R.id.image_button_camera);
 		Button button_sns = (Button) findViewById(R.id.image_button_sns);
 		button_camera.setOnClickListener(this);
 		button_sns.setOnClickListener(this);
 
-		Intent intent = getIntent();
+	}
+	
+	protected void onResume() { 
+	    super.onResume();
+	    
+	    TextView albumName = (TextView)findViewById(R.id.image_albumName);
+	    
+	    Intent intent = getIntent();
 		String path = intent.getExtras().get("path").toString(); // mainActivity에서 title명 받아옴
 
 		gridView = (GridView) findViewById(R.id.image_grid_view);
@@ -50,7 +56,6 @@ public class PhotoGalleryActivity extends Activity implements OnClickListener {
 		gridView.setAdapter(adapter);
 		
 		albumName.setText(intent.getExtras().get("path").toString());
-
 	}
 
 	private void InitilizeGridLayout() {
@@ -63,8 +68,7 @@ public class PhotoGalleryActivity extends Activity implements OnClickListener {
 		gridView.setNumColumns(PhotoGalleryReference.NUM_OF_COLUMNS);
 		gridView.setColumnWidth(columnWidth);
 		gridView.setStretchMode(GridView.NO_STRETCH);
-		gridView.setPadding((int) padding, (int) padding, (int) padding,
-				(int) padding);
+		gridView.setPadding((int) padding, (int) padding, (int) padding, (int) padding);
 		gridView.setHorizontalSpacing((int) padding);
 		gridView.setVerticalSpacing((int) padding);
 	}
@@ -88,5 +92,4 @@ public class PhotoGalleryActivity extends Activity implements OnClickListener {
 			break;
 		}
 	}
-
 }

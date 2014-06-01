@@ -61,6 +61,12 @@ public class MainActivity extends Activity implements OnClickListener,
 		} else if (cursor.getCount() == 0) { // db에 책이 하나도 없을 경우
 			Toast.makeText(getApplicationContext(), "책이 없습니다.\n책을 추가하세요.",
 					Toast.LENGTH_LONG).show();
+			
+			File folder = new File(Environment
+					.getExternalStorageDirectory() + "/DCIM/RememBook/");
+			if (!folder.exists()) {
+				folder.mkdir();
+			}
 		}
 	}
 

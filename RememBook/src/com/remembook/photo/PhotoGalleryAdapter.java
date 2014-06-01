@@ -6,17 +6,25 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import com.remembook.photo.PhotoFullScreenActivity;
+import com.remembook.sqlite.AppSqliteHandler;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class PhotoGalleryAdapter extends BaseAdapter {
 
@@ -112,4 +120,5 @@ public class PhotoGalleryAdapter extends BaseAdapter {
 		}
 		return null;
 	}
+	
 }
