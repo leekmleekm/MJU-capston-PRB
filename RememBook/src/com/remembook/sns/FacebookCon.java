@@ -2,7 +2,7 @@ package com.remembook.sns;
 
 import com.remembook.R;
 import com.remembook.sns.*;
-import com.remembook.sns.Facebook.DialogListener;
+import com.remembook.sns.FacebookActivity.DialogListener;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import android.widget.EditText;
 
 public class FacebookCon extends Activity implements View.OnClickListener
 {
-  private Facebook mFacebook = new Facebook(C.FACEBOOK_APP_ID);
+  private FacebookActivity mFacebook = new FacebookActivity(FacebookC.FACEBOOK_APP_ID);
   private Button mBtnLogin, mBtnFeed, mBtnLogout;
   private EditText mEtContent;//
 
@@ -23,7 +23,7 @@ public class FacebookCon extends Activity implements View.OnClickListener
   public void onCreate(Bundle savedInstanceState)
   {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.sns_main);
+    setContentView(R.layout.sns_facebook_main);
     
     mEtContent = (EditText) findViewById(R.id.etContent);//
 
@@ -64,14 +64,14 @@ public class FacebookCon extends Activity implements View.OnClickListener
     
     if (resultCode == RESULT_OK)
     {
-      if (requestCode == C.FACEBOOK_AUTH_CODE)
+      if (requestCode == FacebookC.FACEBOOK_AUTH_CODE)
       {
         mFacebook.authorizeCallback(requestCode, resultCode, data);
       }
     }
     else
     {
-      if (requestCode == C.FACEBOOK_AUTH_CODE)
+      if (requestCode == FacebookC.FACEBOOK_AUTH_CODE)
       {
         mFacebook.authorizeCallback(requestCode, resultCode, data);
       }      
@@ -87,7 +87,7 @@ public class FacebookCon extends Activity implements View.OnClickListener
   {
     try
     {
-      Log.v(C.LOG_TAG, "access token : " + mFacebook.getAccessToken());
+      Log.v(FacebookC.LOG_TAG, "access token : " + mFacebook.getAccessToken());
       
       Bundle params = new Bundle();
       params.putString("message", mEtContent.getText().toString());
@@ -133,11 +133,11 @@ public class FacebookCon extends Activity implements View.OnClickListener
     public void onComplete(Bundle values)
     {
       // TODO Auto-generated method stub
-      if (C.D) Log.v(C.LOG_TAG, "::: onComplete :::");
+      if (FacebookC.D) Log.v(FacebookC.LOG_TAG, "::: onComplete :::");
     }
 
     @Override
-    public void onError(DialogError e)
+    public void onError(FacebookDialogError e)
     {
       // TODO Auto-generated method stub
       

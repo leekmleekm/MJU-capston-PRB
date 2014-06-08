@@ -23,16 +23,18 @@ public final class R {
         public static final int button_camera_shutter_pressed=0x7f020009;
         public static final int button_sns=0x7f02000a;
         public static final int button_sns_pressed=0x7f02000b;
-        public static final int facebook_icon=0x7f02000c;
-        public static final int ic_menu_search=0x7f02000d;
-        public static final int icon_launcher=0x7f02000e;
-        public static final int icon_search=0x7f02000f;
-        public static final int main_title=0x7f020010;
-        public static final int selecter_button_booksearch=0x7f020011;
-        public static final int selecter_button_camera=0x7f020012;
-        public static final int selecter_button_camera_shutter=0x7f020013;
-        public static final int selecter_button_cameraflash=0x7f020014;
-        public static final int selecter_button_sns=0x7f020015;
+        public static final int ic_menu_search=0x7f02000c;
+        public static final int icon_dropbox=0x7f02000d;
+        public static final int icon_facebook=0x7f02000e;
+        public static final int icon_launcher=0x7f02000f;
+        public static final int icon_search=0x7f020010;
+        public static final int icon_twitter=0x7f020011;
+        public static final int main_title=0x7f020012;
+        public static final int selecter_button_booksearch=0x7f020013;
+        public static final int selecter_button_camera=0x7f020014;
+        public static final int selecter_button_camera_shutter=0x7f020015;
+        public static final int selecter_button_cameraflash=0x7f020016;
+        public static final int selecter_button_sns=0x7f020017;
     }
     public static final class id {
         public static final int CameraView=0x7f050000;
@@ -49,6 +51,7 @@ public final class R {
         public static final int image_grid_view=0x7f050007;
         public static final int image_imgDisplay=0x7f050003;
         public static final int image_pager=0x7f050008;
+        public static final int linearLayout1=0x7f05001b;
         public static final int main_author=0x7f05000d;
         public static final int main_button_search=0x7f050009;
         public static final int main_image=0x7f05000b;
@@ -62,6 +65,10 @@ public final class R {
         public static final int search_listview=0x7f050015;
         public static final int search_publisher=0x7f050012;
         public static final int search_title=0x7f050010;
+        public static final int sns_button_dropbox=0x7f05001e;
+        public static final int sns_button_facebook=0x7f05001d;
+        public static final int sns_button_twitter=0x7f05001f;
+        public static final int textView1=0x7f05001c;
     }
     public static final class layout {
         public static final int camera_main=0x7f030000;
@@ -73,9 +80,10 @@ public final class R {
         public static final int main_splash=0x7f030006;
         public static final int search_listitem=0x7f030007;
         public static final int search_main=0x7f030008;
-        public static final int sns_activity_facebook_con=0x7f030009;
-        public static final int sns_fragment_facebook_con=0x7f03000a;
-        public static final int sns_main=0x7f03000b;
+        public static final int sns_facebook_activity=0x7f030009;
+        public static final int sns_facebook_fragment=0x7f03000a;
+        public static final int sns_facebook_main=0x7f03000b;
+        public static final int sns_main=0x7f03000c;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
@@ -85,6 +93,7 @@ public final class R {
         public static final int camera_flash_button=0x7f040007;
         public static final int imageview_list=0x7f040004;
         public static final int search_edittext=0x7f040003;
+        public static final int sns_title=0x7f040008;
         public static final int take_picture_btn=0x7f040006;
     }
 }

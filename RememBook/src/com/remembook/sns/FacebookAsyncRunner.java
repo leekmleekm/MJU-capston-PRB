@@ -44,11 +44,11 @@ import android.os.Bundle;
  *          Yariv Sadan (yariv@fb.com),
  *          Luke Shepard (lshepard@fb.com)
  */
-public class AsyncFacebookRunner {
+public class FacebookAsyncRunner {
 
-    Facebook fb;
+    FacebookActivity fb;
 
-    public AsyncFacebookRunner(Facebook fb) {
+    public FacebookAsyncRunner(FacebookActivity fb) {
         this.fb = fb;
     }
 

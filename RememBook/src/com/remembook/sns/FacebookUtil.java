@@ -45,7 +45,7 @@ import android.webkit.CookieSyncManager;
  * @author ssoneff@facebook.com
  *
  */
-public final class Util {
+public final class FacebookUtil {
 
     /**
      * Generate the multi-part post body providing the parameters and boundary

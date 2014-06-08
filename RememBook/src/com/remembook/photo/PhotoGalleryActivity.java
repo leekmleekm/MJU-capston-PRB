@@ -8,6 +8,7 @@ import com.remembook.photo.PhotoGalleryAdapter;
 import com.remembook.photo.PhotoGalleryReference;
 import com.remembook.photo.PhotoGalleryUtils;
 import com.remembook.sns.FacebookCon;
+import com.remembook.sns.SNSActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -87,7 +88,7 @@ public class PhotoGalleryActivity extends Activity implements OnClickListener {
 		
 		case R.id.image_button_sns:
 			
-			Intent intent_facebook = new Intent(this, FacebookCon.class);
+			Intent intent_facebook = new Intent(this, SNSActivity.class);
 			startActivity(intent_facebook);
 			break;
 		}

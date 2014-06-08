@@ -45,7 +45,7 @@ import android.webkit.CookieSyncManager;
  *          Yariv Sadan (yariv@facebook.com),
  *          Luke Shepard (lshepard@facebook.com)
  */
-public class Facebook {
+public class FacebookActivity {
 
     // Strings used in the authorization flow
     public static final String REDIRECT_URI = "fbconnect://success";
@@ -85,7 +85,7 @@ public class Facebook {
      *          Your Facebook application ID. Found at
      *          www.facebook.com/developers/apps.php.
      */
-    public Facebook(String appId) {
+    public FacebookActivity(String appId) {
         if (appId == null) {
             throw new IllegalArgumentException(
                     "You must specify your application ID when instantiating " +
@@ -335,7 +335,7 @@ public class Facebook {
                 }
             }
 
-            public void onError(DialogError error) {
+            public void onError(FacebookDialogError error) {
                 Log.d("Facebook-authorize", "Login failed: " + error);
                 mAuthDialogListener.onError(error);
             }
@@ -418,7 +418,7 @@ public class Facebook {
                     Log.d("Facebook-authorize",
                             "Login failed: " + data.getStringExtra("error"));
                     mAuthDialogListener.onError(
-                            new DialogError(
+                            new FacebookDialogError(
                                     data.getStringExtra("error"),
                                     data.getIntExtra("error_code", -1),
                                     data.getStringExtra("failing_url")));
@@ -451,7 +451,7 @@ public class Facebook {
      */
     public String logout(Context context)
             throws MalformedURLException, IOException {
-        Util.clearCookies(context);
+        FacebookUtil.clearCookies(context);
         Bundle b = new Bundle();
         b.putString("method", "auth.expireSession");
         String response = request(b);
@@ -579,7 +579,7 @@ public class Facebook {
         }
         String url = (graphPath != null) ? GRAPH_BASE_URL + graphPath
                                          : RESTSERVER_URL;
-        return Util.openUrl(url, httpMethod, params);
+        return FacebookUtil.openUrl(url, httpMethod, params);
     }
 
     /**
@@ -636,10 +636,10 @@ public class Facebook {
         if (isSessionValid()) {
             parameters.putString(TOKEN, getAccessToken());
         }
-        String url = endpoint + "?" + Util.encodeUrl(parameters);
+        String url = endpoint + "?" + FacebookUtil.encodeUrl(parameters);
         if (context.checkCallingOrSelfPermission(Manifest.permission.INTERNET)
                 != PackageManager.PERMISSION_GRANTED) {
-            Util.showAlert(context, "Error",
+            FacebookUtil.showAlert(context, "Error",
                     "Application requires permission to access the Internet");
         } else {
             //new FbDialog(context, url, listener).show();
@@ -747,7 +747,7 @@ public class Facebook {
          * Executed by the thread that initiated the dialog.
          *
          */
-        public void onError(DialogError e);
+        public void onError(FacebookDialogError e);
 
         /**
          * Called when a dialog is canceled by the user.

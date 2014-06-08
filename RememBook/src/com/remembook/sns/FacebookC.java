@@ -1,6 +1,6 @@
 package com.remembook.sns;
 
-public class C
+public class FacebookC
 {
   public static final String LOG_TAG = "FacebookCon";
   public static boolean D = true;

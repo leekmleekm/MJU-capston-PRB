@@ -38,9 +38,9 @@ import android.widget.TextView;
 
 import com.remembook.R;
 import com.remembook.sns.*;
-import com.remembook.sns.Facebook.DialogListener;
+import com.remembook.sns.FacebookActivity.DialogListener;
 
-public class FbDialog extends Dialog {
+public class FacebookDialog extends Dialog {
 
     static final int FB_BLUE = 0xFF6D84B4;
     static final float[] DIMENSIONS_LANDSCAPE = {460, 260};
@@ -60,7 +60,7 @@ public class FbDialog extends Dialog {
     private LinearLayout mContent;
     private TextView mTitle;
 
-    public FbDialog(Context context, String url, DialogListener listener) {
+    public FacebookDialog(Context context, String url, DialogListener listener) {
         super(context);
         mUrl = url;
         mListener = listener;
@@ -90,7 +90,7 @@ public class FbDialog extends Dialog {
     private void setUpTitle() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         Drawable icon = getContext().getResources().getDrawable(
-                R.drawable.facebook_icon);
+                R.drawable.icon_facebook);
         mTitle = new TextView(getContext());
         mTitle.setText("Facebook");
         mTitle.setTextColor(Color.WHITE);
@@ -107,7 +107,7 @@ public class FbDialog extends Dialog {
         mWebView = new WebView(getContext());
         mWebView.setVerticalScrollBarEnabled(false);
         mWebView.setHorizontalScrollBarEnabled(false);
-        mWebView.setWebViewClient(new FbDialog.FbWebViewClient());
+        mWebView.setWebViewClient(new FacebookDialog.FbWebViewClient());
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.loadUrl(mUrl);
         mWebView.setLayoutParams(FILL);
@@ -119,8 +119,8 @@ public class FbDialog extends Dialog {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             Log.d("Facebook-WebView", "Redirect URL: " + url);
-            if (url.startsWith(Facebook.REDIRECT_URI)) {
-                Bundle values = Util.parseUrl(url);
+            if (url.startsWith(FacebookActivity.REDIRECT_URI)) {
+                Bundle values = FacebookUtil.parseUrl(url);
 
                 String error = values.getString("error");
                 if (error == null) {
@@ -136,11 +136,11 @@ public class FbDialog extends Dialog {
                     mListener.onFacebookError(new FacebookError(error));
                 }
 
-                FbDialog.this.dismiss();
+                FacebookDialog.this.dismiss();
                 return true;
-            } else if (url.startsWith(Facebook.CANCEL_URI)) {
+            } else if (url.startsWith(FacebookActivity.CANCEL_URI)) {
                 mListener.onCancel();
-                FbDialog.this.dismiss();
+                FacebookDialog.this.dismiss();
                 return true;
             } else if (url.contains(DISPLAY_STRING)) {
                 return false;
@@ -156,8 +156,8 @@ public class FbDialog extends Dialog {
                 String description, String failingUrl) {
             super.onReceivedError(view, errorCode, description, failingUrl);
             mListener.onError(
-                    new DialogError(description, errorCode, failingUrl));
-            FbDialog.this.dismiss();
+                    new FacebookDialogError(description, errorCode, failingUrl));
+            FacebookDialog.this.dismiss();
         }
 
         @Override
